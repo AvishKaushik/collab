@@ -85,8 +85,8 @@ class PostController extends StateNotifier<bool> {
     // _ref.read(userProfileControllerProvider.notifier).updateUserKarma(UserKarma.textPost);
     state = false;
     res.fold((l) => showSnackBar(context, l.message), (r) {
-      showSnackBar(context, 'Posted successfully!');
-      Routemaster.of(context).pop();
+      // showSnackBar(context, 'Posted successfully!');
+      Routemaster.of(context);
     });
   }
 

@@ -93,7 +93,7 @@ class UserProfileScreen extends ConsumerWidget {
                         itemCount: data.length,
                         itemBuilder: (BuildContext context, int index) {
                           final post = data[index];
-                          return PostCard(post: post);
+                          return PostCard(post: post,isHome: true,);
                         },
                       );
                     },

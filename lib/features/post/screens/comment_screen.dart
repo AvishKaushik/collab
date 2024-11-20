@@ -51,7 +51,7 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
             data: (data) {
               return Column(
                 children: [
-                  PostCard(post: data),
+                  PostCard(post: data, isHome: false),
                   if (!isGuest)
                     Responsive(
                       child: TextField(

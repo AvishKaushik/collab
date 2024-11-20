@@ -31,6 +31,30 @@ class AuthController extends StateNotifier<bool> {
 
   Stream<User?> get authStateChange => _authRepository.authStateChange;
 
+  void signInWithEmail(BuildContext context, String username, String password) async {
+    state = true;
+    final user = await _authRepository.signInWithEmail(username, password);
+    state = false;
+    user.fold(
+      (l) => showSnackBar(context, l.message),
+      (userModel) =>
+          _ref.read(userProvider.notifier).update((state) => userModel),
+    );
+  }
+
+  void createAccount(BuildContext context, String username, String password) async {
+    state = true;
+    final user = await _authRepository.createAccount(username, password);
+    state = false;
+    user.fold(
+      (l) => showSnackBar(context, l.message),
+      (userModel) =>
+          _ref.read(userProvider.notifier).update((state) => userModel),
+    );
+  }
+
+  
+
   void signInWithGoogle(BuildContext context, bool isFromLogin) async {
     state = true;
     final user = await _authRepository.signInWithGoogle(isFromLogin);
@@ -51,6 +75,8 @@ class AuthController extends StateNotifier<bool> {
           _ref.read(userProvider.notifier).update((state) => userModel),
     );
   }
+
+  
 
   Future<UserModel> getUserData(String uid) {
     return _authRepository.getUserData(uid);

@@ -145,7 +145,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                               itemCount: data.length,
                               itemBuilder: (BuildContext context, int index) {
                                 final post = data[index];
-                                return PostCard(post: post);
+                                return PostCard(post: post, isHome: false,);
                               },
                             ),
                           );
@@ -155,44 +155,45 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                         },
                         loading: () => const Loader(),
                       ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: textController,
-                              focusNode: _focusNode,
-                              decoration: const InputDecoration(
-                                hintText: "Write something...",
-                                border: InputBorder.none,
+                  if (community.members.contains(user.uid))
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                controller: textController,
+                                focusNode: _focusNode,
+                                decoration: const InputDecoration(
+                                  hintText: "Write something...",
+                                  border: InputBorder.none,
+                                ),
+                                onChanged: (text) {
+                                  // Handle text change if needed
+                                },
                               ),
-                              onChanged: (text) {
-                                // Handle text change if needed
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons
+                                  .send), // You can choose any icon or button
+                              onPressed: () {
+                                // Handle the button press, for example:
+                                String postData = textController.text;
+                                sharePost(context, community, postData);
+                                textController
+                                    .clear(); // Clear text field after submission
                               },
                             ),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons
-                                .send), // You can choose any icon or button
-                            onPressed: () {
-                              // Handle the button press, for example:
-                              String postData = textController.text;
-                              sharePost(context, community, postData);
-                              textController
-                                  .clear(); // Clear text field after submission
-                            },
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  )
+                    )
                 ],
               ),
             ),

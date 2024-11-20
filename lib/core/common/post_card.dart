@@ -1,9 +1,6 @@
 import 'package:any_link_preview/any_link_preview.dart';
-import 'package:collab/core/common/error_text.dart';
-import 'package:collab/core/common/loader.dart';
 import 'package:collab/core/constants/constants.dart';
 import 'package:collab/features/auth/controller/auth_controller.dart';
-import 'package:collab/features/community/controller/community_controller.dart';
 import 'package:collab/features/post/controller/post_controller.dart';
 import 'package:collab/models/post_model.dart';
 import 'package:collab/responsive/responsive.dart';
@@ -15,9 +12,11 @@ import 'package:routemaster/routemaster.dart';
 
 class PostCard extends ConsumerWidget {
   final Post post;
+  final bool isHome;
   const PostCard({
     super.key,
     required this.post,
+    required this.isHome,
   });
 
   void deletePost(WidgetRef ref, BuildContext context) async {
@@ -131,18 +130,19 @@ class PostCard extends ConsumerWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'r/${post.communityName}',
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
+                                          if (isHome)
+                                            Text(
+                                              '${post.communityName}',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                          ),
                                           GestureDetector(
                                             onTap: () =>
                                                 navigateToUser(context),
                                             child: Text(
-                                              'u/${post.username}',
+                                              '${post.username}',
                                               style:
                                                   const TextStyle(fontSize: 12),
                                             ),
@@ -161,16 +161,6 @@ class PostCard extends ConsumerWidget {
                                     ),
                                   ),
                               ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                post.title,
-                                style: const TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                             ),
                             if (isTypeImage)
                               SizedBox(
