@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "collab",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "collab (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "collab (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "collab (Flutter iPhone 15 Pro Max)",
+            "program": "lib/main.dart",
+            "deviceId": "4B8F739E-5631-4FF1-857A-883E7BC78D58",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "118894261267",
+    "project_id": "uni-collab-295f0",
+    "storage_bucket": "uni-collab-295f0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118894261267:android:3555ef12996338dd3dfbe6",
+        "android_client_info": {
+          "package_name": "com.asp.collab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118894261267-mf7v3i7anlmsvpjksb9j4h1khian9cks.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.asp.collab",
+            "certificate_hash": "2ea082a6b3c1354063978a5d20be0a658f0d470d"
+          }
+        },
+        {
+          "client_id": "118894261267-qe3vpn1uqtrng7mgq8vcb9olpbg1g633.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJr2MDMBLEzHbM5VDt9QIhr4rIYc7sRW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118894261267-qe3vpn1uqtrng7mgq8vcb9olpbg1g633.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "118894261267-ieit0sgpolbaqvp7qb5iv6to3crd384f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.asp.dart.uniCollab"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
