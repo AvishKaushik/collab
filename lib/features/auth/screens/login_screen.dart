@@ -54,7 +54,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           TextButton(
               onPressed: () {},
               child: const Text(
-                'Welcome to the Community',
+                'Welcome to the COLLAB!',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

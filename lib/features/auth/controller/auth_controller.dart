@@ -1,4 +1,5 @@
 import 'package:collab/core/utils.dart';
+import 'package:collab/features/community/controller/community_controller.dart';
 import 'package:collab/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +32,12 @@ class AuthController extends StateNotifier<bool> {
 
   Stream<User?> get authStateChange => _authRepository.authStateChange;
 
-  void signInWithEmail(BuildContext context, String username, String password) async {
+  void signInWithEmail(
+      BuildContext context, String username, String password) async {
     state = true;
     final user = await _authRepository.signInWithEmail(username, password);
+    // _ref.refresh(userCommunitiesProvider);
+    _ref.refresh(communityControllerProvider);
     state = false;
     user.fold(
       (l) => showSnackBar(context, l.message),
@@ -42,9 +46,11 @@ class AuthController extends StateNotifier<bool> {
     );
   }
 
-  void createAccount(BuildContext context, String username, String password) async {
+  void createAccount(
+      BuildContext context, String username, String password) async {
     state = true;
     final user = await _authRepository.createAccount(username, password);
+    _ref.refresh(communityControllerProvider);
     state = false;
     user.fold(
       (l) => showSnackBar(context, l.message),
@@ -52,12 +58,11 @@ class AuthController extends StateNotifier<bool> {
           _ref.read(userProvider.notifier).update((state) => userModel),
     );
   }
-
-  
 
   void signInWithGoogle(BuildContext context, bool isFromLogin) async {
     state = true;
     final user = await _authRepository.signInWithGoogle(isFromLogin);
+    _ref.refresh(communityControllerProvider);
     state = false;
     user.fold(
         (l) => showSnackBar(context, l.message),
@@ -68,6 +73,7 @@ class AuthController extends StateNotifier<bool> {
   void signInAsGuest(BuildContext context) async {
     state = true;
     final user = await _authRepository.signInAsGuest();
+    _ref.refresh(communityControllerProvider);
     state = false;
     user.fold(
       (l) => showSnackBar(context, l.message),
@@ -75,8 +81,6 @@ class AuthController extends StateNotifier<bool> {
           _ref.read(userProvider.notifier).update((state) => userModel),
     );
   }
-
-  
 
   Future<UserModel> getUserData(String uid) {
     return _authRepository.getUserData(uid);

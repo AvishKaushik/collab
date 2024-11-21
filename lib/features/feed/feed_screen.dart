@@ -13,8 +13,18 @@ class FeedScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
+    final userCommunities =  ref.watch(userCommunitiesProvider);
     final isGuest = !user.isAuthenticated;
-
+    if(userCommunities.value!.isEmpty) {
+      return TextButton(
+              onPressed: () {},
+              child: const Text(
+                'Welcome to the COLLAB! Join a community to see posts.',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ));
+    }
     if (!isGuest) {
       return ref.watch(userCommunitiesProvider).when(
             data: (communities) => ref.watch(userPostsProvider(communities)).when(
